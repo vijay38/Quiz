@@ -66,7 +66,6 @@ pymongo==3.10.1
 PyMsgBox==1.0.8
 pyparsing==2.4.7
 pyperclip==1.8.0
-pypiwin32==222
 Pyrebase4==4.3.0
 PyRect==0.1.4
 PyScreeze==0.1.26
@@ -75,8 +74,6 @@ python-dotenv==0.14.0
 python-jwt==2.0.1
 PyTweening==1.0.3
 pytz==2020.1
-pywin32==222
-pywin32-ctypes==0.2.0
 requests==2.23.0
 requests-toolbelt==0.9.1
 rsa==4.0
