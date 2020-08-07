@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ended</title>
+   <link rel="shortcut icon" href="{% static 'images/Logo.ico' %}" />
+   <link href="https://fonts.googleapis.com/css2?family=Gurajada&display=swap" rel="stylesheet">
+</head>
+<style>
+.button {
+  float: right;
+  border: 0.5rem solid #ccc;
+  color: white;
+  padding: 0.5rem 0.7rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.4rem;
+  margin: 0.2rem 0.3rem;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.button1 {
+  background-color: white; 
+  color: black; 
+  border: 0.1rem solid #4CAF50;
+}
+.button1:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+p
+{
+  font-size: 6rem;
+  font-family: 'Gurajada', sans-serif;
+}
+</style>
+<body>
+<form action="/admin">
+<button type="submit" class="button button1">Admin</button>
+</form>
+<p>దయచేసి క్షమించండి.<br> కేటాయించబడిన సమయం ముగిసినది.<br> కనుక క్విజ్ వ్రాయుటకు అనుమతించబడదు  </p>
+
+</body>
+</html>

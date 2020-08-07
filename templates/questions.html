@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+<head>
+   <title>Emmanuel Quiz</title>
+   <link rel="shortcut icon" href="{% static 'images/Logo.ico' %}" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<img src={% static "/images/Logo.png" %} >
+</head>
+<style>
+p {
+  text-align: center;
+  font-size: 5rem;
+  margin-top: 0rem;
+  margin-bottom: 0px;
+}
+.button {
+  width=50%;
+  border: 0.5rem solid #ccc;
+  color: white;
+  padding: 1rem 4rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.4rem;
+  margin: 0.2rem 0.3rem;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.button1 {
+  background-color: white; 
+  color: black; 
+  border: 0.1rem solid #BB8FCE;
+}
+.button1:hover {
+  background-color: #BB8FCE;
+  color: white;
+}
+.centre
+{
+text-align: center;
+}
+.centre1
+{
+    font-size: 3rem;
+    border: 0.3rem solid #C38D9E;
+    border-radius: 1rem;
+    text-align: center;
+}
+img {
+  float: left;
+  width: 3rem;
+  height: 3rem;
+  padding: 1rem;
+}
+</style>
+<body>
+
+<form action="question" method="POST">
+{% csrf_token %}
+<input id="time" value={{time}} hidden>
+<input id="user" value={{id}} name="user" hidden>
+<input id="ans" name="ans" hidden>
+<input id="secs" name ="secs" hidden>
+<input name="number" value={{qnum}} hidden>
+<p id="demo" style="float: right;width=5%;">{{time}}</p>
+<br></br>
+<br></br>
+<br></br>
+<div class="centre1">
+{{qnum}}.{{quest}}
+</div>
+<br></br>
+<div class="centre">
+<button type="button" class="button button1" style="text-align: center;width: 60%;"  id="a" onclick="funa()">A:{{a}}</button>
+</div>
+<div class="centre">
+<button type="button" class="button button1" style="text-align: center;width: 60%" id="b" onclick="funb()">B:{{b}}</button>
+</div>
+<div class="centre">
+<button type="button" class="button button1" style="text-align: center;width: 60%" id="c" onclick="func()">C:{{c}}</button>
+</div>
+<div class="centre">
+<button type="button" class="button button1" style="text-align: center;width: 60%" id="d" onclick="fund()">D:{{d}}</button>
+</div>
+<button type="submit" id="sub" hidden />
+</form>
+<script>
+var seconds=document.getElementById("time").value;
+var x = setInterval(function() {
+  document.getElementById("demo").innerHTML =seconds;
+  seconds=seconds-1;
+  if (seconds < 0) {
+    document.getElementById("secs").value=document.getElementById("demo").innerHTML;
+    document.getElementById("ans").value="e";
+    clearInterval(x);
+    document.getElementById("sub").click();
+  }
+}, 1000);
+function funa() {
+    document.getElementById("secs").value=document.getElementById("demo").innerHTML;
+    document.getElementById("ans").value="a";
+    document.getElementById("sub").click();
+}
+function funb() {
+    document.getElementById("secs").value=document.getElementById("demo").innerHTML;
+    document.getElementById("ans").value="b";
+    document.getElementById("sub").click();
+}
+function func() {
+    document.getElementById("secs").value=document.getElementById("demo").innerHTML;
+    document.getElementById("ans").value="c";
+    document.getElementById("sub").click();
+}
+function fund() {
+    document.getElementById("secs").value=document.getElementById("demo").innerHTML;
+    document.getElementById("ans").value="d";
+    document.getElementById("sub").click();
+}
+</script>
+
+</body>
+</html>

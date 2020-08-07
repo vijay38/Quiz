@@ -1,0 +1,80 @@
+{% load static %}
+<!doctype html>
+<html>
+
+<head>
+    <title>Admin</title>
+      <link rel="shortcut icon" href="{% static 'images/Logo.ico' %}" />
+    <link href='https://fonts.googleapis.com/css?family=Alatsi' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    
+</head>
+<style>
+body
+{
+  font-size: 1.2rem;
+  font-family: 'Alatsi';
+  margin: 0.2rem;
+}
+img {
+  float: left;
+  width: 4.5rem;
+  height: 4.5rem;
+  padding: 1rem;
+}
+.d1
+{
+  margin-top: -7rem;
+}
+</style>
+<body>
+<img src={% static "/images/Logo.png" %} >
+<form action="change" method="POST">
+{% csrf_token %}
+<label style="float: right;">Quiz Status:👇🏻</label>
+<br></br>
+{% if status %}
+<input type="text" value="Start" name="st" hidden>
+<button type="submit" class="btn btn-success" name="btn" style="float: right;">Start</button>
+{% else %}
+<input type="text" value="Stop" name="st" hidden>
+<button type="submit" class="btn btn-danger" name="btn" style="float: right;">Stop</button>
+{% endif %}
+</form>
+<form action="time" method="POST">
+{% csrf_token %}
+<br></br>
+<label style="float: right;">SET TIMER:👇🏻</label>
+<br></br>
+<input type="text" value={{timer}} name="timer" class="form-control" style="float: right;width: 5rem;">
+<br></br>
+<button type="submit" class="btn btn-primary" style="float: right;">Set</button>
+</form>
+<form action="result" method="POST">
+{% csrf_token %}
+<button type="submit" style="float: right;margin: 3rem -3rem;" name="result" class="btn btn-success">Show results</button>
+</form>
+<div class="d1">
+<form action="edit" method="POST">
+{% csrf_token %}
+Enter Question:
+<input type="text" style="width: 50%" name="ques" required>
+<br></br>
+Provide Options:
+<br></br>
+Option A: <input type="text" style="width: 50%;" name="a" required>
+<br></br>
+Option B: <input type="text" style="width: 50%;" name="b" required>
+<br></br>
+Option C: <input type="text" style="width: 50%;" name="c" required>
+<br></br>
+Option D: <input type="text" style="width: 50%;" name="d" required>
+<br></br>
+Answer:
+<br></br>
+<input type="text" placeholder="A or B or C or D" style="width: 30%;" name="ans" required>
+<button type="submit" class="btn btn-warning">Submit</button>
+</form>
+</div>
+</body>
+</html>

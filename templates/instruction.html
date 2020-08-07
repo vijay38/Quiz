@@ -1,0 +1,111 @@
+{% load static %}
+<!doctype html>
+<html>
+
+<head>
+    <title>Instructions</title>
+      <link rel="shortcut icon" href="{% static 'images/Logo.ico' %}" />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Alatsi' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ramabhadra&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=NTR&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Timmana&display=swap" rel="stylesheet">
+</head>
+<style>
+p {
+  text-align: center;
+  font-size: 5.5rem;
+  margin-top: 0rem;
+  margin-bottom: 0px;
+}
+img {
+  float: left;
+  width: 6rem;
+  height: 6rem;
+  padding: 1rem;
+}
+.instruction{
+  float: left;
+  width: 100%;
+  margin-top: 0.5rem;
+  margin-right: 0.2rem;
+  font-family: 'Ramabhadra', sans-serif;
+  font-size:5.3rem;
+  border: 0.5rem solid #fff000;;
+  border-radius: 1rem;
+}
+.points{
+  margin-top: 7rem;
+  text-align: left;
+  {% comment %} font-family: 'NTR', sans-serif; {% endcomment %}
+  font-family: 'Timmana', sans-serif;
+  font-size: 5rem;
+}
+li:before {
+   content: '👉🏻';
+    } 
+</style>
+<body style="text-align: center;">
+<img src={% static "/images/Logo.png" %} >
+<p id="demo" style="float: right;color: blue;font-family: 'Alatsi';">60</p>
+<br>
+<form action="start" method="POST">
+{% csrf_token %}
+<input id="user" value={{id}} name="user" hidden>
+<br>
+<br>
+<br>
+<div class="instruction">Instructions: ఈ క్రింద పేర్కొన్న సూచనలను జాగ్రతగా గమనించవలెను </div>
+<div class="points">
+<ul style="list-style: none">
+<li>సమాధానముల కొరకు ఇంటర్ నెట్ లో వెదకకూడదు. ఇందుకు దేవుడే సాక్షి.</li>
+<li>సమాధానములు ఒకరితో మరొకరు పంచుకొనకూడదు.</li>
+<li>ఈ క్విజ్ లో మొత్తం 20 ప్రశ్నలు కలవు. </li>
+<li>ప్రతీ కరెక్ట్(సరైన) సమాధానముకు 5 మార్కులు ఇవ్వబడును. </li>
+<li>ఈ క్విజ్ గరిష్ట మార్కులు 100.</li>
+<li>ఈ క్విజ్ గరిష్ట సమయం 20 నిమిషములు.</li>
+<li>ప్రతీ ప్రశ్నకు కేటాయించిన 1 నిమిషంలో మీరు సమాధానము ఇచ్చుటకు తీసుకున్న సమయములో మిగిలిన సమయం మీ మార్కులు కు కలపబడుతుంది.<br> అనగా ఎంత తొందరగా సమాధానము ఇస్తారో మీరు అంతా ఎక్కువ స్కోర్ చేస్తారు.</li>
+<li>ఉదాహరణ :మీరు ఒక ప్రశ్నకు సమాదానము  కరెక్ట్ గా 20 సెకండ్స్ లో ఇస్తే మిగిలిన 40 సెకండ్స్ కు గాను మీ స్కోర్ కి ఆ 40 మార్కులు కలపబడును.</li>
+<li>ఒక్కసారి  క్విజ్ అయిపోయిన తర్వాత మరొకసారి రాయలేరు. </li>
+</ul>
+</div>
+<br>
+<br>
+<br>
+<button type="button" class="btn btn-success" id="sub" style="text-align: center;width: 50%;font-size: 3.5rem;font-family: 'Alatsi';" onclick="funa()" disabled>Start Quiz</button>
+<button type="submit" id="sub1"  hidden />
+<script>
+var seconds=60;
+var x = setInterval(function() {
+  if (seconds<0)
+  {
+    if (seconds==-3200){
+      seconds=-2;
+    }
+    if (seconds%2==0) 
+    {
+    document.getElementById("demo").innerHTML ="Go!";
+    }
+    else
+    {
+    document.getElementById("demo").innerHTML =" ";
+    }
+  }
+  else
+  {
+  document.getElementById("demo").innerHTML =seconds;
+  }
+  seconds=seconds-1;
+  if (seconds < 0) {
+    document.getElementById("sub").disabled=false;
+  }
+}, 1000);
+function funa() {
+    clearInterval(x);
+    document.getElementById("sub1").click();
+}
+</script>
+</form>
+</body>
+</html>

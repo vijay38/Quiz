@@ -1,0 +1,29 @@
+{% load static %}
+<!doctype html>
+<html>
+
+<head>
+    <title>Sorry!</title>
+      <link rel="shortcut icon" href="{% static 'images/Logo.ico' %}" />
+    <link href='https://fonts.googleapis.com/css?family=Alatsi' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=NTR&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gurajada&display=swap" rel="stylesheet">
+<style>
+p{
+    font-size: 6rem;
+    font-family: 'Gurajada', sans-serif;
+}
+img {
+  float: left;
+  width: 3rem;
+  height: 3rem;
+  padding: 1rem;
+}
+</style>
+<body style="text-align: center;">
+<img src={% static "/images/Logo.png" %} >
+<p>
+దయచేసి క్షమించగలరు.<br> మీ సమాధానములు ఇప్పటికే ఒక్కసారి స్వీకరించబడినది.<br> కనుక రెండవసారి అనుమతించబడదు.
+</p>
+</head>
+</html>
