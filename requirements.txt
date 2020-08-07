@@ -51,7 +51,6 @@ pymongo==3.10.1
 PyMsgBox==1.0.8
 pyparsing==2.4.7
 pyperclip==1.8.0
-pypiwin32==223
 Pyrebase4==4.3.0
 PyRect==0.1.4
 PyScreeze==0.1.26
