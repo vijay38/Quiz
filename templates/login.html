@@ -14,12 +14,12 @@
 <style>
 img {
   float: left;
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 5.5rem;
+  height: 5.5rem;
   padding: 1rem;
 }
 input[type=text], select {
-  width: 40%;
+  width: 60%;
   padding: 0.5rem 0.5rem;
   margin: 1rem 0;
   border: 0.3rem solid #17202A;
@@ -28,9 +28,9 @@ input[type=text], select {
   text-align: center;
 }
 input[type=submit] {
-  width: 24%;
+  width: 38%;
   color: white;
-  font-size: 2rem;
+  font-size: 4rem;
   padding: 0.6rem 0.8rem;
   margin: 1rem 0;
   border: none;
@@ -51,7 +51,7 @@ body
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 1.4rem;
+  font-size: 3rem;
   margin: 0.2rem 0.3rem;
   transition-duration: 0.4s;
   cursor: pointer;
@@ -75,7 +75,7 @@ body
 }
 .heading{
   text-align: center;
-  font-size: 3rem;
+  font-size: 4rem;
   color: blue;
 }
 .asteriskField {
@@ -88,10 +88,20 @@ body
 .verse{
   color: #ff005e;
   font-family: 'Gurajada', serif;
+  font-size: 4rem;
 }
 .refe{
   color: #ff005e;
   font-family: 'Gurajada', serif;
+  font-size: 4rem;
+}
+.quizhead
+{
+  font-size: 6rem;
+  font-family: 'Alatsi';
+  color: #23d261;
+  border-bottom-style: ridge;
+
 }
 </style>
 
@@ -103,6 +113,7 @@ body
 <div class="heading">Emmanuel Ministries Hyderabad</div>
 <div class="verse">సంతోషమును ఉత్సాహమును పుట్టించు మనోహరములైన పండుగలు</div>
 <div class="refe">జెకర్యా 8:19</div>
+<center><b class="quizhead">Bible Quiz</b></center>
 <br/>
 {% crispy form form.helper %}
 </body>
