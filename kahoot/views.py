@@ -72,7 +72,7 @@ def next(request):
     mongocoll=mongodb.users
     if not str(request.POST["number"]) in st.split(" "):
         if actual==request.POST["ans"]:
-            score=int(request.POST["secs"])+5
+            score=int(request.POST["secs"])+50
             mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"score":score+prev_score}})
             mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"ques":qn+1}})
             correct=prev_correct+1
