@@ -53,28 +53,38 @@ li:before {
   display: none;
 }
 select.goog-te-combo {
-  font-size: 1.5rem;
+  font-size: 3rem;
 }
-.skiptranslate.goog-te-gadget
+{% comment %} .skiptranslate.goog-te-gadget
 {
   color: red;
+} {% endcomment %}
+input[type=text], select {
+  width: 60%;
+  padding: 0.5rem 0.5rem;
+  margin: 1rem 0;
+  border: 0.3rem solid black;
+  border-radius: 0.7rem;
+  box-sizing: border-box;
+  text-align: center;
 }
 </style>
 <body style="text-align: center;">
 <img src={% static "/images/Logo.png" %} >
-<div style="float: right;width:20rem;margin-bottom:-1.7rem;" id="google_translate_element"></div>  
-    {% comment %} <script type="text/javascript">
+<p id="demo" style="float: right;color: blue;font-family: 'Alatsi';">60</p>
+<center><div style="width: 25rem;font-size: 3rem;" id="google_translate_element"></div>  
+    <script type="text/javascript">
         function googleTranslateElementInit() 
         {  
             new google.translate.TranslateElement
             (  
-                'google_translate_element' 
+                'google_translate_element'
             );  
         }  
     </script>  
         <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
-         </script> {% endcomment %}
-<p id="demo" style="float: right;color: blue;font-family: 'Alatsi';">60</p>
+         </script></center>
+
 <br>
 <form action="start" method="POST">
 {% csrf_token %}
