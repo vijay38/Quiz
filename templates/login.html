@@ -76,7 +76,12 @@ body
 .heading{
   text-align: center;
   font-size: 4rem;
-  color: blue;
+  color: white;
+  border: 0.4rem solid yellow;
+  background-color: #111179;
+  border-radius: 0.8rem;
+  margin-top: 0.8rem;
+
 }
 .asteriskField {
     display: none;
@@ -99,13 +104,41 @@ body
 {
   font-size: 6rem;
   font-family: 'Alatsi';
+  color: yellow;
+  border: 1rem solid black;
+  border-radius: 0.5rem;
+  background-color: black;
+  {% comment %} border-bottom: 5px solid white; {% endcomment %}
+}
+.goog-logo-link
+{
+  display: none;
+}
+select.goog-te-combo {
+  font-size: 1.5rem;
+}
+.skiptranslate.goog-te-gadget
+{
   color: red;
-  border-bottom: 5px solid white;
 }
 </style>
+{% comment %} <div style="float: right;width:20rem;margin-bottom:-1.7rem;" id="google_translate_element"></div>  
+    <script type="text/javascript">
+        function googleTranslateElementInit() 
+        {  
+            new google.translate.TranslateElement
+            (  
+                'google_translate_element' 
+            );  
+        }  
+    </script>  
+        <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+         </script> {% endcomment %}
 
 <body style="text-align: center;">
+
 <img src={% static "/images/Logo.png" %} >
+<br>
 <div class="heading">Emmanuel Ministries Hyderabad</div>
 <div class="verse">సంతోషమును ఉత్సాహమును పుట్టించు మనోహరములైన పండుగలు</div>
 <div class="refe">జెకర్యా 8:19</div>

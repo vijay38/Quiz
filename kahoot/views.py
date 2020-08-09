@@ -49,6 +49,10 @@ def next(request):
     l=list(mongocoll.find({}))
     timer=l[0]["time"]
     max_num=l[0]["num"]
+    status=l[0]["status"]
+    if status==False:
+        client.close()
+        return render(request,"ended.html")
     mongocoll=mongodb.users
     l=list(mongocoll.find({"phone":request.POST["user"]}))
     qn=l[0]["ques"]
