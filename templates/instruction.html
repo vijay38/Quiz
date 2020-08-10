@@ -48,20 +48,6 @@ img {
 li:before {
    content: '👉🏻';
     } 
-.goog-logo-link
-{
-  display: none;
-}
-select.goog-te-combo {
-  font-size: 3rem;
-}
-.goog-te-banner-frame {
-  display: none;
-}
-{% comment %} .skiptranslate.goog-te-gadget
-{
-  color: red;
-} {% endcomment %}
 input[type=text], select {
   width: 60%;
   padding: 0.5rem 0.5rem;
@@ -75,18 +61,6 @@ input[type=text], select {
 <body style="text-align: center;">
 <img src={% static "/images/Logo.png" %} >
 <p id="demo" style="float: right;color: blue;font-family: 'Alatsi';">60</p>
-<center><div style="width: 25rem;font-size: 3rem;" id="google_translate_element"></div>  
-    <script type="text/javascript">
-        function googleTranslateElementInit() 
-        {  
-            new google.translate.TranslateElement
-            (  
-                'google_translate_element'
-            );  
-        }  
-    </script>  
-        <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
-         </script></center>
 
 <br>
 <form action="start" method="POST">

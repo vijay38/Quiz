@@ -111,30 +111,17 @@ body
   background-color: black;
   {% comment %} border-bottom: 5px solid white; {% endcomment %}
 }
-.goog-logo-link
-{
-  display: none;
+
+input:invalid {
+    border-color: red;
 }
-select.goog-te-combo {
-  font-size: 1.5rem;
+input,
+input:valid {
+    border-color: green;
 }
-.skiptranslate.goog-te-gadget
-{
-  color: red;
-}
+
+
 </style>
-<div style="float: right;width: 25rem;margin-bottom:-1.7rem;" id="google_translate_element"></div>  
-    <script type="text/javascript">
-        function googleTranslateElementInit() 
-        {  
-            new google.translate.TranslateElement
-            (  
-                'google_translate_element'
-            );  
-        }  
-    </script>  
-        <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
-         </script>
 
 <body style="text-align: center;">
 
@@ -146,5 +133,11 @@ select.goog-te-combo {
 <center><b class="quizhead">Bible Quiz</b></center>
 <br/>
 {% crispy form form.helper %}
+<script>
+var input = document.getElementById('phone');
+input.oninvalid = function(event) {
+    event.target.setCustomValidity('Please use Your Mobile Number without "+" Sign');
+}
+</script>
 </body>
 </html>

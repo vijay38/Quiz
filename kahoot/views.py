@@ -212,27 +212,28 @@ def instructions(request):
         name=form.cleaned_data['Name']
         place=form.cleaned_data['Place']
         phone=form.cleaned_data['Phone']
-    client=MongoClient(os.getenv("mongolink"))
-    mongodb=client.get_database("Quiz")
-    mongocoll=mongodb.param
-    l=list(mongocoll.find({}))
-    que=l[0]["num"]
-    choices=list(range(1,que))
-    random.shuffle(choices)
-    choices=list(map(str,choices))
-    order=" ".join(choices)
-    mongocoll=mongodb.users
-    l=list(mongocoll.find({"phone":phone}))
-    if len(l)>0:
-        if l[0]["ques"]>=que:
-            client.close()
-            return render(request,"already.html")
-    else:
-        ins={"name":name.encode("utf-8"),"place":place.encode("utf-8"),"phone":phone,"ques":1,"correct":0,"time":0,"score":0,"completed":"0","order":order}
-        mongocoll.insert_one(ins)
-    data={"id":phone}
-    client.close()
-    return render(request,"instruction.html",data)
+        client=MongoClient(os.getenv("mongolink"))
+        mongodb=client.get_database("Quiz")
+        mongocoll=mongodb.param
+        l=list(mongocoll.find({}))
+        que=l[0]["num"]
+        choices=list(range(1,que))
+        random.shuffle(choices)
+        choices=list(map(str,choices))
+        order=" ".join(choices)
+        mongocoll=mongodb.users
+        l=list(mongocoll.find({"phone":phone}))
+        if len(l)>0:
+            if l[0]["ques"]>=que:
+                client.close()
+                return render(request,"already.html")
+        else:
+            ins={"name":name.encode("utf-8"),"place":place.encode("utf-8"),"phone":phone,"ques":1,"correct":0,"time":0,"score":0,"completed":"0","order":order}
+            mongocoll.insert_one(ins)
+        data={"id":phone}
+        client.close()
+        return render(request,"instruction.html",data)
+    return HttpResponse("<center><h1>Invalid Phone Number</h1></center>")
 def excel(request):
     client=MongoClient(os.getenv("mongolink"))
     mongodb=client.get_database("Quiz")
