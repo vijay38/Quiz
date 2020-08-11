@@ -133,11 +133,5 @@ input:valid {
 <center><b class="quizhead">Bible Quiz</b></center>
 <br/>
 {% crispy form form.helper %}
-<script>
-var input = document.getElementById('phone');
-input.oninvalid = function(event) {
-    event.target.setCustomValidity('Please use Your Mobile Number without "+" Sign');
-}
-</script>
 </body>
 </html>
