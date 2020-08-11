@@ -6,6 +6,12 @@
    <link rel="shortcut icon" href="{% static 'images/Logo.ico' %}" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <img src={% static "/images/Logo.png" %} >
+<script type="text/javascript">
+	window.history.forward();
+	function noBack() { 
+    window.history.forward(); 
+  }
+</script>
 </head>
 <style>
 p {
@@ -54,7 +60,7 @@ img {
   padding: 1rem;
 }
 </style>
-<body>
+<body onload="noBack();" onpageshow="if (event.persisted) noBack();" onunload="">
 
 <form action="question" method="POST">
 {% csrf_token %}

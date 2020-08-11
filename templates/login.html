@@ -10,6 +10,12 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <link href='https://fonts.googleapis.com/css?family=Alatsi' rel='stylesheet'>
   <link href="https://fonts.googleapis.com/css2?family=Gurajada&display=swap" rel="stylesheet">
+  <script type="text/javascript">
+	window.history.forward();
+	function noBack() { 
+    window.history.forward(); 
+  }
+</script>
 </head>
 <style>
 img {
@@ -111,19 +117,17 @@ body
   background-color: black;
   {% comment %} border-bottom: 5px solid white; {% endcomment %}
 }
-
-input:invalid {
+input:invalid 
+{
     border-color: red;
 }
 input,
 input:valid {
     border-color: green;
 }
-
-
 </style>
 
-<body style="text-align: center;">
+<body style="text-align: center;" onload="noBack();" onpageshow="if (event.persisted) noBack();" onunload="">
 
 <img src={% static "/images/Logo.png" %} >
 <br>

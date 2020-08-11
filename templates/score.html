@@ -8,7 +8,12 @@
     <link href='https://fonts.googleapis.com/css?family=Alatsi' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=NTR&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Gurajada&display=swap" rel="stylesheet">
-    
+    <script type="text/javascript">
+	window.history.forward();
+	function noBack() { 
+    window.history.forward(); 
+  }
+</script>
 </head>
 <style>
 p
@@ -74,7 +79,7 @@ img {
 
 }
 </style>
-<body style="text-align: center;">
+<body style="text-align: center;" onload="noBack();" onpageshow="if (event.persisted) noBack();" onunload="">
 <img src={% static "/images/Logo.png" %} >
 <p>ఈ బైబిల్ క్విజ్ లో ఉత్సాహంగా పాల్గొన్న మిమ్ములను,మీ కుటుంబములను దేవుడు బహుగా దీవించును గాక! ఆమెన్.🙏🏻</p>
 <div class="f1">
