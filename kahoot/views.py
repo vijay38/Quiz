@@ -83,7 +83,7 @@ def next(request):
             score=0
             correct=prev_correct
             mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"ques":qn+1}})
-            mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"time":timer-int(request.POST["secs"])+prev_time}})
+            #mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"time":timer-int(request.POST["secs"])+prev_time}})
             mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"completed":st+" "+str(qn)}})
         if qn+1==max_num:
             return render(request,"score.html",{"score":score+prev_score,"time":timer-int(request.POST["secs"])+prev_time,"correct":correct})
