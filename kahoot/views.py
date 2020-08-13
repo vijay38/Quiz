@@ -74,18 +74,11 @@ def next(request):
     if not str(request.POST["number"]) in st.split(" "):
         if actual==request.POST["ans"]:
             score=int(request.POST["secs"])+600
-            mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"score":score+prev_score}})
-            mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"ques":qn+1}})
-            correct=prev_correct+1
-            mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"correct":prev_correct+1}})
-            mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"time":timer-int(request.POST["secs"])+prev_time}})
-            mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"completed":st+" "+str(qn)}})
+            mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"score":score+prev_score,"ques":qn+1,"correct":prev_correct+1,"time":timer-int(request.POST["secs"])+prev_time,"completed":st+" "+str(qn)}})
         else:
             score=0
             correct=prev_correct
-            mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"ques":qn+1}})
-            mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"wrong":st1+" "+str(qn)}})
-            mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"completed":st+" "+str(qn)}})
+            mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"ques":qn+1,"wrong":st1+" "+str(qn),"completed":st+" "+str(qn)}})
         if qn+1==max_num:
             return render(request,"score.html",{"score":score+prev_score,"time":timer-int(request.POST["secs"])+prev_time,"correct":correct})
         mongocoll=mongodb.questions
