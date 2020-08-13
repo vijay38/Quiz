@@ -57,6 +57,7 @@ def next(request):
     l=list(mongocoll.find({"phone":request.POST["user"]}))
     qn=l[0]["ques"]
     st=l[0]["completed"]
+    st1=l[0]["wrong"]
     prev_score=l[0]["score"]
     prev_correct=l[0]["correct"]
     prev_time=l[0]["time"]
@@ -83,7 +84,7 @@ def next(request):
             score=0
             correct=prev_correct
             mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"ques":qn+1}})
-            #mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"time":timer-int(request.POST["secs"])+prev_time}})
+            mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"wrong":st1+" "+str(qn)}})
             mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"completed":st+" "+str(qn)}})
         if qn+1==max_num:
             return render(request,"score.html",{"score":score+prev_score,"time":timer-int(request.POST["secs"])+prev_time,"correct":correct})
@@ -228,7 +229,7 @@ def instructions(request):
                 client.close()
                 return render(request,"already.html")
         else:
-            ins={"name":name.encode("utf-8"),"place":place.encode("utf-8"),"phone":phone,"ques":1,"correct":0,"time":0,"score":0,"completed":"0","order":order}
+            ins={"name":name.encode("utf-8"),"place":place.encode("utf-8"),"phone":phone,"ques":1,"correct":0,"time":0,"score":0,"completed":"0","order":order,"wrong":"0"}
             mongocoll.insert_one(ins)
         data={"id":phone}
         client.close()
