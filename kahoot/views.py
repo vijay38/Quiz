@@ -251,5 +251,13 @@ def pdf(request):
     l=list(mongocoll.find({}))
     client.close()
     url = l[0]["url"]+"admin/result"
-    pdfkit.from_url(url,"./static/documents/data.pdf")
+    options = {
+    'page-size': 'A4',
+    'margin-top': '0.25in',
+    'margin-right': '0.25in',
+    'margin-bottom': '0.25in',
+    'margin-left': '0.25in',
+    'no-outline': None
+    }
+    pdfkit.from_url(url,"./static/documents/data.pdf",options=options)
     return render(request,"downloadp.html")
