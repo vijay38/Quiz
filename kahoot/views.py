@@ -208,7 +208,7 @@ def wrongdisp(request,phone):
     client=MongoClient(os.getenv("mongolink"))
     mongodb=client.get_database("Quiz")
     mongocoll=mongodb.users
-    l=list(mongocoll.find({"phone":phone},{"wrong":1,"order":1}))
+    l=list(mongocoll.find({"phone":phone},{"wrong":1,"order":1,"wrongop":1}))
     wrong=l[0]["wrong"]
     wrong=list(map(int,wrong.split(" ")))
     wrong.pop(0)
