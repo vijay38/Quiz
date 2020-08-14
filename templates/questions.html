@@ -12,7 +12,12 @@
 	function noBack() { 
     window.history.forward(); 
   }
-</script>
+  </script>
+  {% comment %} <script type="text/javascript">
+    window.onbeforeunload = function() {
+        return false;
+    }
+</script> {% endcomment %}
 </head>
 <style>
 p {
@@ -108,6 +113,7 @@ function funa() {
     clearInterval(x);
     document.getElementById("secs").value=seconds;
     document.getElementById("ans").value="a";
+    document.getElementById("a").disabled=true;
     document.getElementById("b").disabled=true;
     document.getElementById("c").disabled=true;
     document.getElementById("d").disabled=true;
@@ -118,6 +124,7 @@ function funb() {
     document.getElementById("secs").value=seconds;
     document.getElementById("ans").value="b";
     document.getElementById("a").disabled=true;
+    document.getElementById("b").disabled=true;
     document.getElementById("c").disabled=true;
     document.getElementById("d").disabled=true;
     document.getElementById("sub").click();
@@ -127,6 +134,7 @@ function func() {
     document.getElementById("secs").value=seconds;
     document.getElementById("ans").value="c";
     document.getElementById("a").disabled=true;
+    document.getElementById("c").disabled=true;
     document.getElementById("b").disabled=true;
     document.getElementById("d").disabled=true;
     document.getElementById("sub").click();
@@ -138,6 +146,7 @@ function fund() {
     document.getElementById("a").disabled=true;
     document.getElementById("b").disabled=true;
     document.getElementById("c").disabled=true;
+    document.getElementById("d").disabled=true;
     document.getElementById("sub").click();
 }
 </script>

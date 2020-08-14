@@ -98,7 +98,7 @@ def next(request):
     else:
         mongocoll=mongodb.questions
         l=list(mongocoll.find({"qnum":order[qn-1]},{"_id":0}))
-        data={"time":timer,"quest":l[0]["question"].decode("utf-8")}
+        data={"time":0,"quest":l[0]["question"].decode("utf-8")}
         data["a"]=l[0]["a"].decode("utf-8")
         data["b"]=l[0]["b"].decode("utf-8")
         data["c"]=l[0]["c"].decode("utf-8")
@@ -228,7 +228,8 @@ def wrongdisp(request,phone):
         option=l[qnum-1]["ans"].decode("utf-8")
         answer=l[qnum-1][option.lower()]
         if wrongop[i] not in ["a","b","c","d"]:
-            wans="Not Answered"
+            s="Not Answered"
+            wans=s.encode('utf-8')
         else:
             wans=l[qnum-1][wrongop[i]]
         ret.append({"question":question.decode("utf-8"),"answer":answer.decode("utf-8"),"wrongans":wans.decode('utf-8')})
