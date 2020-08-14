@@ -41,9 +41,9 @@ img {
 {% for i in data %}
 <li style="margin-left: 4rem;">{{i.question}}
 <br>
-మీరు ఇచ్చిన సమాధానము:<label class="ans1">{{i.answer}}</label>
+మీరు ఇచ్చిన సమాధానము:<label class="ans1">{{i.wrongans}}</label>
 <br>
-సరైన సమాధానము: <label class="ans">{{i.wrongans}}</label></li>
+సరైన సమాధానము: <label class="ans">{{i.answer}}</label></li>
 <br>
 {% endfor %}
 </ol>
