@@ -72,15 +72,16 @@ def next(request):
     actual=actual.lower()
     mongocoll=mongodb.users
     if not str(request.POST["number"]) in st.split(" "):
+        secs=int(request.POST["secs"])
         if actual==request.POST["ans"]:
-            score=int(request.POST["secs"])+600
-            mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"score":score+prev_score,"ques":qn+1,"correct":prev_correct+1,"time":timer-int(request.POST["secs"])+prev_time,"completed":st+" "+str(qn)}})
+            score=secs+600
+            mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"score":score+prev_score,"ques":qn+1,"correct":prev_correct+1,"time":timer-secs+prev_time,"completed":st+" "+str(qn)}})
         else:
             score=0
             correct=prev_correct
             mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"ques":qn+1,"wrong":st1+" "+str(qn),"completed":st+" "+str(qn)}})
         if qn+1==max_num:
-            return render(request,"score.html",{"score":score+prev_score,"time":timer-int(request.POST["secs"])+prev_time,"correct":correct})
+            return render(request,"score.html",{"score":score+prev_score,"time":timer-secs+prev_time,"correct":correct})
         mongocoll=mongodb.questions
         l=list(mongocoll.find({"qnum":order[qn]},{"_id":0}))
         data={"time":timer,"quest":l[0]["question"].decode("utf-8")}
@@ -200,6 +201,28 @@ def result(request):
     data={"l":l}
     return render(request,"result.html",data)
     #return HttpResponse("<h1  style='text-align: center;'>Please Login</h1>")
+def wrongdisp(request,phone):
+    client=MongoClient(os.getenv("mongolink"))
+    mongodb=client.get_database("Quiz")
+    mongocoll=mongodb.users
+    l=list(mongocoll.find({"phone":phone},{"wrong":1,"order":1}))
+    wrong=l[0]["wrong"]
+    wrong=list(map(int,wrong.split(" ")))
+    wrong.pop(0)
+    order=l[0]["order"]
+    order=list(map(int,order.split(" ")))
+    data={}
+    mongocoll=mongodb.questions
+    l=list(mongocoll.find({}).sort("qnum"))
+    ret=[]
+    for i in wrong:
+        qnum=order[i-1]
+        question=l[qnum-1]["question"]
+        option=l[qnum-1]["ans"].decode("utf-8")
+        answer=l[qnum-1][option.lower()]
+        ret.append({"question":question.decode("utf-8"),"answer":answer.decode("utf-8")})
+    data["data"]=ret
+    return render(request,"wrongdisp.html",data)
 def instructions(request):
     form=UserForm(request.POST)
     if form.is_valid():
@@ -211,6 +234,7 @@ def instructions(request):
         mongocoll=mongodb.param
         l=list(mongocoll.find({}))
         que=l[0]["num"]
+        display=l[0]["display"]
         choices=list(range(1,que))
         random.shuffle(choices)
         choices=list(map(str,choices))
@@ -220,7 +244,10 @@ def instructions(request):
         if len(l)>0:
             if l[0]["ques"]>=que:
                 client.close()
-                return render(request,"already.html")
+                if display==False:
+                    return render(request,"already.html")
+                else:
+                    return wrongdisp(request,phone)
         else:
             ins={"name":name.encode("utf-8"),"place":place.encode("utf-8"),"phone":phone,"ques":1,"correct":0,"time":0,"score":0,"completed":"0","order":order,"wrong":"0"}
             mongocoll.insert_one(ins)

@@ -7,10 +7,11 @@
       <link rel="shortcut icon" href="{% static 'images/Logo.ico' %}" />
     <link href='https://fonts.googleapis.com/css?family=Alatsi' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=NTR&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ramabhadra&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Gurajada&display=swap" rel="stylesheet">
 <style>
 p{
-    font-size: 6rem;
+    font-size: 5rem;
     font-family: 'Gurajada', sans-serif;
 }
 img {
@@ -19,12 +20,30 @@ img {
   height: 3rem;
   padding: 1rem;
 }
+.wrong{
+    font-size: 4rem;
+    font-family: 'Ramabhadra', sans-serif;
+}
+.ans{
+    color:red;
+}
 </style>
-<body style="text-align: center;">
+<body>
 <img src={% static "/images/Logo.png" %} >
-<p>
-దయచేసి క్షమించగలరు.<br> మీ సమాధానములు ఇప్పటికే ఒక్కసారి స్వీకరించబడినది.<br> కనుక రెండవసారి అనుమతించబడదు.
+<p  style="text-align: center;">
+తప్పుగా చెప్పిన సమాధానాలు
 </p>
+<div class="wrong">
+<ol>
+{% for i in data %}
+<li style="margin-left: 2rem;">{{i.question}}
+<br>
+Correct: <label class="ans">{{i.answer}}</label></li>
+<br>
+{% endfor %}
+</ol>
+</div>
+
 </body>
 </head>
 </html>

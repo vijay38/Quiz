@@ -3,6 +3,7 @@
 <html>
 <head>
    <title>Emmanuel Quiz</title>
+   <embed src="{% static 'documents/music.mp3' %}" loop="true" autostart="true" width="2" height="0">
    <link rel="shortcut icon" href="{% static 'images/Logo.ico' %}" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <img src={% static "/images/Logo.png" %} >
@@ -97,7 +98,7 @@ var x = setInterval(function() {
   document.getElementById("demo").innerHTML =seconds;
   seconds=seconds-1;
   if (seconds < 0) {
-    document.getElementById("secs").value=document.getElementById("demo").innerHTML;
+    document.getElementById("secs").value="0";
     document.getElementById("ans").value="e";
     clearInterval(x);
     document.getElementById("sub").click();
@@ -105,7 +106,7 @@ var x = setInterval(function() {
 }, 1000);
 function funa() {
     clearInterval(x);
-    document.getElementById("secs").value=document.getElementById("demo").innerHTML;
+    document.getElementById("secs").value=seconds;
     document.getElementById("ans").value="a";
     document.getElementById("a").disabled=true;
     document.getElementById("b").disabled=true;
@@ -115,7 +116,7 @@ function funa() {
 }
 function funb() {
     clearInterval(x);
-    document.getElementById("secs").value=document.getElementById("demo").innerHTML;
+    document.getElementById("secs").value=seconds;
     document.getElementById("ans").value="b";
     document.getElementById("a").disabled=true;
     document.getElementById("b").disabled=true;
@@ -125,7 +126,7 @@ function funb() {
 }
 function func() {
     clearInterval(x);
-    document.getElementById("secs").value=document.getElementById("demo").innerHTML;
+    document.getElementById("secs").value=seconds;
     document.getElementById("ans").value="c";
     document.getElementById("a").disabled=true;
     document.getElementById("b").disabled=true;
@@ -135,7 +136,7 @@ function func() {
 }
 function fund() {
     clearInterval(x);
-    document.getElementById("secs").value=document.getElementById("demo").innerHTML;
+    document.getElementById("secs").value=seconds;
     document.getElementById("ans").value="d";
     document.getElementById("a").disabled=true;
     document.getElementById("b").disabled=true;
