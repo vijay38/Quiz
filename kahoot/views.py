@@ -75,6 +75,7 @@ def next(request):
         secs=int(request.POST["secs"])
         if actual==request.POST["ans"]:
             score=secs+600
+            correct=prev_correct+1
             mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"score":score+prev_score,"ques":qn+1,"correct":prev_correct+1,"time":timer-secs+prev_time,"completed":st+" "+str(qn)}})
         else:
             score=0
