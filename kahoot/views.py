@@ -58,6 +58,7 @@ def next(request):
     qn=l[0]["ques"]
     st=l[0]["completed"]
     st1=l[0]["wrong"]
+    st2=l[0]["wrongop"]
     prev_score=l[0]["score"]
     prev_correct=l[0]["correct"]
     prev_time=l[0]["time"]
@@ -73,14 +74,15 @@ def next(request):
     mongocoll=mongodb.users
     if not str(request.POST["number"]) in st.split(" "):
         secs=int(request.POST["secs"])
-        if actual==request.POST["ans"]:
+        op=request.POST["ans"]
+        if actual==op:
             score=secs+600
             correct=prev_correct+1
             mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"score":score+prev_score,"ques":qn+1,"correct":prev_correct+1,"time":timer-secs+prev_time,"completed":st+" "+str(qn)}})
         else:
             score=0
             correct=prev_correct
-            mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"ques":qn+1,"wrong":st1+" "+str(qn),"completed":st+" "+str(qn)}})
+            mongocoll.update_one({"phone":request.POST["user"]},{"$set":{"ques":qn+1,"wrong":st1+" "+str(qn),"completed":st+" "+str(qn),"wrongop":st2+" "+op}})
         if qn+1==max_num:
             return render(request,"score.html",{"score":score+prev_score,"time":timer-secs+prev_time,"correct":correct})
         mongocoll=mongodb.questions
@@ -210,18 +212,26 @@ def wrongdisp(request,phone):
     wrong=l[0]["wrong"]
     wrong=list(map(int,wrong.split(" ")))
     wrong.pop(0)
+    wrongop=l[0]["wrongop"]
+    wrongop=wrongop.split(" ")
+    wrongop.pop(0)
     order=l[0]["order"]
     order=list(map(int,order.split(" ")))
     data={}
     mongocoll=mongodb.questions
     l=list(mongocoll.find({}).sort("qnum"))
+    client.close()
     ret=[]
-    for i in wrong:
-        qnum=order[i-1]
+    for i in range(len(wrong)):
+        qnum=order[wrong[i]-1]
         question=l[qnum-1]["question"]
         option=l[qnum-1]["ans"].decode("utf-8")
         answer=l[qnum-1][option.lower()]
-        ret.append({"question":question.decode("utf-8"),"answer":answer.decode("utf-8")})
+        if wrongop[i] not in ["a","b","c","d"]:
+            wans="Not Answered"
+        else:
+            wans=l[qnum-1][wrongop[i]]
+        ret.append({"question":question.decode("utf-8"),"answer":answer.decode("utf-8"),"wrongans":wans.decode('utf-8')})
     data["data"]=ret
     return render(request,"wrongdisp.html",data)
 def instructions(request):
@@ -250,7 +260,7 @@ def instructions(request):
                 else:
                     return wrongdisp(request,phone)
         else:
-            ins={"name":name.encode("utf-8"),"place":place.encode("utf-8"),"phone":phone,"ques":1,"correct":0,"time":0,"score":0,"completed":"0","order":order,"wrong":"0"}
+            ins={"name":name.encode("utf-8"),"place":place.encode("utf-8"),"phone":phone,"ques":1,"correct":0,"time":0,"score":0,"completed":"0","order":order,"wrong":"0","wrongop":"0"}
             mongocoll.insert_one(ins)
         data={"id":phone}
         client.close()

@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>Sorry!</title>
+    <title>Answers</title>
       <link rel="shortcut icon" href="{% static 'images/Logo.ico' %}" />
     <link href='https://fonts.googleapis.com/css?family=Alatsi' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=NTR&display=swap" rel="stylesheet">
@@ -25,20 +25,25 @@ img {
     font-family: 'Ramabhadra', sans-serif;
 }
 .ans{
+    color:green;
+}
+.ans1{
     color:red;
 }
 </style>
 <body>
 <img src={% static "/images/Logo.png" %} >
-<p  style="text-align: center;">
-తప్పుగా చెప్పిన సమాధానాలు
+<p  style="text-align: center;margin-bottom: -1rem;">
+ఈ క్రింది ప్రశ్నలకు మీరు సరైన సమాధనములు ఇవ్వలేదు 
 </p>
 <div class="wrong">
 <ol>
 {% for i in data %}
 <li style="margin-left: 3rem;">{{i.question}}
 <br>
-Correct: <label class="ans">{{i.answer}}</label></li>
+మీరు ఇచ్చిన సమాధానము:<label class="ans1">{{i.answer}}</label>
+<br>
+సరైన సమాధానము: <label class="ans">{{i.wrongans}}</label></li>
 <br>
 {% endfor %}
 </ol>
